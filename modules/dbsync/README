@@ -1,0 +1,63 @@
+.------------------------------------------------------------------------------.
+|   This is a quick reference, details on class methods are inside the file.   |
+'------------------------------------------------------------------------------'
+
+The public methods available under DBSync class are:
+
+	# SetHomeDatabase()
+
+	    Parameters:
+
+	    	$database
+		    $type (default = 'mysql')
+		    $host (default = 'localhost')
+		    $user (default = 'root')
+		    $pass (default = '')
+
+	    Set the Home Database settings. These are the settings of the database
+        that has it's structure correct and all other should guide thru.
+
+
+	# AddSyncDatabase()
+
+	    Parameters:
+
+		    $database
+		    $type (default = 'mysql')
+		    $host (default = 'localhost')
+		    $user (default = 'root')
+		    $pass (default = '')
+
+    	Add a Sync Database. This function is used to add databases that will
+        be synched with the Home Database.
+
+
+	# Sync()
+
+    	Synchronise all the Sync Databases with the Home Database.
+
+
+A simple script to synchronise a database db1 with db2 on your localhost mysql
+server could be as simple as this:
+
+<?php
+	include 'class.dbsync.php';
+
+    $dbsync = new DBSync();
+    $dbsync->SetHomeDatabase('db1');
+    $dbsync->AddSyncDatabase('db2');
+    $dbsync->Sync();
+?>
+
+This is as simple as this because of default parameters. They assume your local
+database server is at the localhost on a mysql server width user root and with
+no password.
+If you want you can create diferente database drivers for MSSQL and others by
+creating the class and naming it like class.<type>.dbsync.php. This way, when
+you try to sync a database and chose <type> as the type of the database, the
+DBSync class will try and load the correct file and make the sync. Be aware you
+cannot change the names of the methods, they must be exactly the same as in
+class.mysql.dbsync.php and should do obviously the same thing.
+
+If you have any doubt, mail me at:
+me@diogoresende.net

@@ -1,0 +1,8 @@
+To customize MUMARA language 
+Change following line in /inc/db.ini.php 
+	$language	= 'en';
+To 
+	$language	= 'custom';
+
+
+Do all the customizations in custom.php and it will applied to MUMARA
